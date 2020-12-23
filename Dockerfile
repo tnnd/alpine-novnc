@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:3.12
 LABEL maintainer=doug.warren@gmail.com
 
 ENV HOME=/root \
@@ -12,9 +12,10 @@ ENV HOME=/root \
 RUN apk --update --upgrade add git bash supervisor nodejs nodejs-npm \
 	&& git clone https://github.com/novnc/noVNC.git /root/noVNC \
 	&& git clone https://github.com/novnc/websockify /root/noVNC/utils/websockify \
+	&& cd /root/noVNC \
+	&& git checkout v1.2.0 \
 	&& rm -rf /root/noVNC/.git \
 	&& rm -rf /root/noVNC/utils/websockify/.git \
-	&& cd /root/noVNC \
 	&& npm install npm@latest \
 	&& npm install \
 	&& ./utils/use_require.js --as commonjs --with-app \
