@@ -11,7 +11,7 @@ ENV HOME=/root \
 	REMOTE_PORT=5900
 
 RUN apk --update --upgrade add git bash supervisor fluxbox x11vnc xvfb xterm \
-	&& git clone https://github.com/tnnd/noVNC-alpine.git /root/novnc \
+	&& git clone https://github.com/tnnd/noVNC-alpine.git /root/noVNC \
 	&& rm -rf /root/noVNC/.git \
 	&& apk del git
 
