@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.14
 
 # Setup demo environment variables
 ENV HOME=/root \
@@ -22,6 +22,8 @@ RUN apk --update --upgrade add \
 # Clone noVNC from github
 RUN git clone https://github.com/tnnd/noVNC-alpine.git /root/noVNC \
 	&& rm -rf /root/noVNC/.git \
+	&& cp /root/noVNC/vnc.html /root/noVNC/index.html \
+	&& mkdir /root/.vnc/ && x11vnc -storepasswd 1234 /root/.vnc/passwd \
 	&& apk del git
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
