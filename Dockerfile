@@ -21,6 +21,7 @@ RUN mkdir /root/.vnc/ && x11vnc -storepasswd 1234 /root/.vnc/passwd
 
 # Clone noVNC from github
 ADD noVNC/ /root/noVNC/
+COPY noVNC/vnc.html /root/noVNC/index.html
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
